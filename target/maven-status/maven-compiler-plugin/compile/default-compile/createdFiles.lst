@@ -3,6 +3,7 @@ com\sms\servlet\ManageUsers.class
 com\sms\servlet\EditCourse.class
 com\sms\util\DBConnection.class
 com\mycompany\sms\resources\JakartaEE11Resource.class
+com\sms\servlet\ManageCourses.class
 com\sms\servlet\DeleteUser.class
 com\sms\servlet\Login1.class
 com\sms\servlet\UpdateUser.class

@@ -58,7 +58,7 @@
 		<div class="card">
 			<h3>Courses</h3>
 			<p>Create and organize course offerings.</p>
-			<a href="manage_courses.jsp">Manage Courses</a>
+			<a href="ManageCourses">Manage Courses</a>
 		</div>
 
 		<div class="card">

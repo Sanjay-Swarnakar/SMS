@@ -50,7 +50,6 @@ public class ManageUsers extends HttpServlet {
 					user.setRole(rs.getString("role"));
 					userList.add(user);
 				}
-
 				request.setAttribute("userList", userList);
 				request.getRequestDispatcher("manage_users.jsp").forward(request, response);
 			}
