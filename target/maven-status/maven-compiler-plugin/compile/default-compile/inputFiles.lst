@@ -7,8 +7,10 @@ C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\GetUserDetails.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\GetUsers.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\Login.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\Login1.java
+C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\ManageUsers.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\OldRegister.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\Register.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\StudentDashboard.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\UpdateUser.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\util\DBConnection.java
+C:\Users\Sanjay Swarnakar\SMS\src\main\java\model\User.java

@@ -30,7 +30,7 @@ public class Login1 extends HttpServlet {
 			return;
 		}
 
-		try (Connection con = DBConnection.getConnection(); 
+		try (Connection con = DBConnection.getConnection();
 				PreparedStatement ps = con.prepareStatement("SELECT password, role, id FROM users WHERE username=?")) {
 
 			ps.setString(1, username);
@@ -49,9 +49,9 @@ public class Login1 extends HttpServlet {
 
 						switch (role.toLowerCase()) {
 							case "admin" ->
-								response.sendRedirect("admin.jsp");
+								response.sendRedirect("admin_new.jsp");
 							case "teacher" ->
-								response.sendRedirect("teacher.jsp");
+								response.sendRedirect("teacher_new.jsp");
 							case "student" -> {
 								request.getRequestDispatcher("StudentDashboard").forward(request, response);
 							}
