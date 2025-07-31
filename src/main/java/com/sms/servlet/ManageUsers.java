@@ -29,7 +29,8 @@ public class ManageUsers extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT ud.id, ud.username, role, email, phone, address, fname, mname, lname FROM users_detail ud join users u on ud.username=u.username")) {
+		try (Connection con = DBConnection.getConnection(); 
+				PreparedStatement ps = con.prepareStatement("SELECT ud.id, ud.username, role, email, phone, address, fname, mname, lname FROM users_detail ud join users u on ud.username=u.username")) {
 			try (ResultSet rs = ps.executeQuery()) {
 
 				List<User> userList = new ArrayList<>();

@@ -30,6 +30,7 @@ header {
 	padding: 2rem;
 }
 .btn {
+	text-decoration: none; /* Removes underline */
 	padding: 8px 14px;
 	background: var(--primary);
 	color: white;
@@ -37,6 +38,11 @@ header {
 	border-radius: 5px;
 	cursor: pointer;
 }
+
+a{
+  text-decoration: none;
+}
+
 .btn:hover {
 	background: var(--accent);
 }

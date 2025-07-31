@@ -1,18 +1,20 @@
 package com.sms.servlet;
 
+import com.sms.util.DBConnection;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.sms.util.DBConnection;
-import jakarta.servlet.annotation.WebServlet;
 import org.mindrot.jbcrypt.BCrypt;
 
 @WebServlet("/AddUser")
+@MultipartConfig
 public class AddUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

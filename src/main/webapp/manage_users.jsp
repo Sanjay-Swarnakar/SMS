@@ -19,7 +19,7 @@
 		</header>
 
 		<div class="container">
-			<button class="btn" onclick="openModal()">➕ Add User</button>
+			<a href="registration.jsp" class="btn">➕ Add User</a>
 
 			<h2>Manage Users</h2>
 			<table>
@@ -48,10 +48,10 @@
 					<td><%= user.getRole()%></td>
 					<td class="actions">
 						<button class="btn"
-								onclick="openEditModal('<%= user.getId()%>', '<%= user.getUsername()%>', '<%= user.getFullname()%>', '<%= user.getRole()%>', '<%= user.getEmail()%>')">
+								onclick="openEditModal('<%= user.getId()%>', '<%= user.getUsername()%>', '<%= user.getFullname()%>', '<%= user.getEmail()%>', '<%= user.getPhone()%>', '<%=user.getAddress()%>', '<%= user.getRole()%>')">
 							✏️ Edit
 						</button>
-						<form action="DeleteUserServlet" method="post" style="display:inline;" onsubmit="return confirm('Are you sure?');">
+						<form action="DeleteUser" method="post" style="display:inline;" onsubmit="return confirm('Are you sure?');">
 							<input type="hidden" name="id" value="<%= user.getId()%>">
 							<button type="submit" class="btn">🗑️ Delete</button>
 						</form>
@@ -75,13 +75,17 @@
 				<form id="userForm">
 					<input type="text" name="username" placeholder="Username" required>
 					<input type="text" name="fullname" placeholder="Full Name" required>
+					<input type="email" name="email" placeholder="Email" required>
+					<input type="text" name="phone" placeholder="Phone" required>
+					<input type="text" name="address" placeholder="Address" required>
 					<select name="role" required>
 						<option value="">Select Role</option>
-						<option value="Student">Student</option>
-						<option value="Teacher">Teacher</option>
-						<option value="Admin">Admin</option>
+						<option value="admin">Admin</option>
+						<option value="exam">Exam</option>
+						<option value="teacher">Teacher</option>
+						<option value="student">Student</option>
+						<option value="parent">Parent</option>
 					</select>
-					<input type="email" name="email" placeholder="Email" required>
 
 					<div class="modal-footer">
 						<button type="button" class="btn" onclick="closeModal()">Cancel</button>
@@ -100,13 +104,48 @@
 				title.textContent = 'Add User';
 				form.reset();
 				modal.style.display = 'flex';
+				form.action = 'AddUser';
+
+				// Remove hidden ID if exists (so it doesn't confuse EditUser servlet)
+				const idField = document.getElementById('userIdField');
+				if (idField) {
+					idField.remove();
+				}
 			}
 
-			function openEditModal() {
+			function openEditModal(id, username, fullname, email, phone, address, role) {
 				title.textContent = 'Edit User';
-				// Pre-fill form here (if needed with JS)
 				modal.style.display = 'flex';
+
+				form.username.value = username;
+				form.fullname.value = fullname;
+				form.email.value = email;
+				form.phone.value = phone;
+				form.address.value = address;
+				form.role.value = role?.trim().toLowerCase();
+				form.action = 'EditUser';
+
+				let idField = document.getElementById('userIdField');
+				if (!idField) {
+					idField = document.createElement('input');
+					idField.type = 'hidden';
+					idField.name = 'id';
+					idField.id = 'userIdField';
+					form.appendChild(idField);
+				}
+				idField.value = id;
 			}
+
+			form.addEventListener('submit', function (e) {
+				e.preventDefault();
+				fetch(form.action, {
+					method: 'POST',
+					enctype: 'application/x-www-form-urlencoded',
+					body: new FormData(form)
+				}).then(res => res.text()).then(() => {
+					location.reload(); // Refresh after update or add
+				}).catch(err => alert('Error saving user'));
+			});
 
 			function closeModal() {
 				modal.style.display = 'none';

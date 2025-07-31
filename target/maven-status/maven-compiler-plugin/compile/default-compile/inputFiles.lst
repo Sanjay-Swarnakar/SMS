@@ -2,6 +2,8 @@ C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\mycompany\sms\JakartaRestConfigu
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\mycompany\sms\resources\JakartaEE11Resource.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\AddUser.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\AdminDashboard.java
+C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\DeleteUser.java
+C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\EditUser.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\EditUserPageServlet.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\GetUserDetails.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\GetUsers.java
