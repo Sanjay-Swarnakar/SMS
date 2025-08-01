@@ -64,13 +64,13 @@
 		<div class="card">
 			<h3>Site Settings</h3>
 			<p>Control academic year, holidays, and defaults.</p>
-			<a href="site_settings.jsp">Settings</a>
+			<a href="ManageSettings">Settings</a>
 		</div>
 
 		<div class="card">
 			<h3>Reports</h3>
 			<p>Download performance and attendance reports.</p>
-			<a href="reports.jsp">View Reports</a>
+			<a href="view_reports.jsp">View Reports</a>
 		</div>
 
 		<div class="card">

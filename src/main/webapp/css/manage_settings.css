@@ -1,0 +1,18 @@
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.settings-form label {
+    font-weight: bold;
+}
+
+.settings-form input,
+.settings-form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
