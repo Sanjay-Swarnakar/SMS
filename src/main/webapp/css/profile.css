@@ -1,0 +1,57 @@
+.main {
+	padding: 20px;
+	max-width: 700px;
+	margin: auto;
+}
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.profile-container {
+	background: #fff;
+	padding: 20px;
+	border-radius: 12px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+.profile-pic-section {
+	flex: 1 1 200px;
+	text-align: center;
+}
+.profile-pic-section img {
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin-bottom: 10px;
+}
+.form-section {
+	flex: 2 1 300px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.form-section input {
+	padding: 10px;
+	font-size: 1em;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+}
+.form-section button {
+	padding: 12px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 1em;
+	margin-top: 10px;
+}
+.back-link {
+	text-decoration: none;
+	font-size: 14px;
+}

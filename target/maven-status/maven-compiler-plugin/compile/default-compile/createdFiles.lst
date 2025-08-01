@@ -1,8 +1,10 @@
 com\sms\util\DBConnection.class
 com\mycompany\sms\resources\JakartaEE11Resource.class
 model\SystemLog.class
+sms\student\servlet\UpdateProfile.class
 com\sms\servlet\DeleteUser.class
 model\Course.class
+model\Student.class
 com\sms\servlet\GetUsers.class
 com\sms\servlet\EditUser.class
 com\sms\servlet\EditUserPageServlet.class
@@ -19,6 +21,7 @@ com\sms\servlet\SystemLogs.class
 com\sms\servlet\UpdateUser.class
 com\sms\servlet\UpdateSettings.class
 com\sms\servlet\Register.class
+sms\student\servlet\Profile.class
 com\mycompany\sms\JakartaRestConfiguration.class
 com\sms\servlet\GetUserDetails.class
 com\sms\servlet\OldRegister.class
@@ -27,3 +30,4 @@ com\sms\servlet\AddCourse.class
 com\sms\servlet\StudentDashboard.class
 com\sms\servlet\DeleteCourse.class
 com\sms\servlet\AddUser.class
+com\sms\servlet\Profile.class

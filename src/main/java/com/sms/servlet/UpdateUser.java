@@ -1,12 +1,11 @@
 package com.sms.servlet;
 
+import com.sms.util.DBConnection;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.sql.*;
-
-import com.sms.util.DBConnection;
 
 @WebServlet("/UpdateUser")
 public class UpdateUser extends HttpServlet {
