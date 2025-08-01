@@ -2,6 +2,7 @@ package com.sms.servlet;
 
 import com.sms.util.DBConnection;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import java.sql.ResultSet;
  * @author Sanjay Swarnakar
  */
 @WebServlet("/EditCourse")
+@MultipartConfig
 public class EditCourse extends HttpServlet {
 
 	@Override
@@ -39,17 +41,17 @@ public class EditCourse extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
-		String name = request.getParameter("name");
+		String name = request.getParameter("courseName");
 		String desc = request.getParameter("description");
 		int credits = Integer.parseInt(request.getParameter("credits"));
 
-		try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement("UPDATE courses SET course_name=?, desciption=?, credits=? WHERE course_id=?")) {
+		try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement("UPDATE courses SET course_name=?, description=?, credits=? WHERE course_id=?")) {
 			ps.setString(1, name);
 			ps.setString(2, desc);
 			ps.setInt(3, credits);
 			ps.setInt(4, id);
 			ps.executeUpdate();
-			response.sendRedirect("manage_courses.jsp");
+			response.sendRedirect("ManageCourses");
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendError(500, "Failed to update course");

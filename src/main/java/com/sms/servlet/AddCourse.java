@@ -2,6 +2,7 @@ package com.sms.servlet;
 
 import com.sms.util.DBConnection;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,19 +16,20 @@ import java.sql.PreparedStatement;
  * @author Sanjay Swarnakar
  */
 @WebServlet("/AddCourse")
+@MultipartConfig
 public class AddCourse extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
+        String name = request.getParameter("courseName");
         String desc = request.getParameter("description");
         int credits = Integer.parseInt(request.getParameter("credits"));
 
         try (Connection con = DBConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement("INSERT INTO courses(course_name, desciption, credits) VALUES (?, ?, ?)");) {
+             PreparedStatement ps = con.prepareStatement("INSERT INTO courses(course_name, description, credits) VALUES (?, ?, ?)");) {
             ps.setString(1, name);
             ps.setString(2, desc);
             ps.setInt(3, credits);
             ps.executeUpdate();
-            response.sendRedirect("manage_courses.jsp");
+            response.sendRedirect("ManageCourses");
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(500, "Failed to add course");

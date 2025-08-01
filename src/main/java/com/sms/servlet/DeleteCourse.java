@@ -23,7 +23,7 @@ public class DeleteCourse extends HttpServlet {
              PreparedStatement ps = con.prepareStatement("DELETE FROM courses WHERE course_id=?")) {
             ps.setInt(1, id);
             ps.executeUpdate();
-            response.sendRedirect("manage_courses.jsp");
+            response.sendRedirect("ManageCourses");
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(500, "Failed to delete course");
