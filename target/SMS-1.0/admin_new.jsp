@@ -31,11 +31,11 @@
 <body>
 <div class="sidebar" id="sidebar">
 	<h2>Admin Menu</h2>
-	<a href="manage_users.jsp">Manage Users</a>
-	<a href="manage_courses.jsp">Manage Courses</a>
-	<a href="site_settings.jsp">Site Settings</a>
-	<a href="reports.jsp">Reports</a>
-	<a href="logs.jsp">System Logs</a>
+	<a href="ManageUsers">Manage Users</a>
+	<a href="ManageCourses">Manage Courses</a>
+	<a href="ManageSettings">Site Settings</a>
+	<a href="view_reports.jsp">Reports</a>
+	<a href="SystemLogs">System Logs</a>
 	<a href="logout.jsp">Logout</a>
 </div>
 
