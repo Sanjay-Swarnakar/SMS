@@ -76,7 +76,7 @@
 		<div class="card">
 			<h3>Logs</h3>
 			<p>View login history, errors, and system events.</p>
-			<a href="logs.jsp">System Logs</a>
+			<a href="SystemLogs">System Logs</a>
 		</div>
 
 		<div class="card">

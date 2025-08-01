@@ -1,5 +1,6 @@
 com\sms\util\DBConnection.class
 com\mycompany\sms\resources\JakartaEE11Resource.class
+model\SystemLog.class
 com\sms\servlet\DeleteUser.class
 model\Course.class
 com\sms\servlet\GetUsers.class
@@ -14,6 +15,7 @@ com\sms\servlet\ManageUsers.class
 com\sms\servlet\EditCourse.class
 com\sms\servlet\ManageCourses.class
 com\sms\servlet\Login1.class
+com\sms\servlet\SystemLogs.class
 com\sms\servlet\UpdateUser.class
 com\sms\servlet\UpdateSettings.class
 com\sms\servlet\Register.class

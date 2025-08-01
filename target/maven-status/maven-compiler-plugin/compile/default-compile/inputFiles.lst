@@ -19,9 +19,11 @@ C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\ManageUsers.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\OldRegister.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\Register.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\StudentDashboard.java
+C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\SystemLogs.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\UpdateSettings.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\UpdateUser.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\util\DBConnection.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\model\Course.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\model\Settings.java
+C:\Users\Sanjay Swarnakar\SMS\src\main\java\model\SystemLog.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\model\User.java
