@@ -1,0 +1,35 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+.container {
+	padding: 20px;
+}
+h2 {
+	margin-bottom: 20px;
+}
+.toggle-btn {
+	float: right;
+	margin-top: -40px;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 1em;
+}
+th, td {
+	padding: 12px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+body.dark-mode {
+	background-color: #121212;
+	color: #fff;
+}
+body.dark-mode table {
+	background-color: #1e1e1e;
+}
+body.dark-mode th, body.dark-mode td {
+	color: #fff;
+}

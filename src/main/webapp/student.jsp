@@ -13,11 +13,11 @@
 
 		<div class="sidebar" id="sidebar">
 			<h2>Menu</h2>
-			<a href="profile.jsp">My Profile</a>
-			<a href="courses.jsp">Courses</a>
-			<a href="grades.jsp">Grades</a>
-			<a href="attendance.jsp">Attendance</a>
-			<a href="assignments.jsp">Assignments</a>
+			<a href="Student/Profile">My Profile</a>
+			<a href="Student/ViewCourses">Courses</a>
+			<a href="Student/ViewGrades">Grades</a>
+			<a href="Student/Attendance">Attendance</a>
+			<a href="Student/Assignments">Assignments</a>
 			<a href="logout.jsp">Logout</a>
 		</div>
 
