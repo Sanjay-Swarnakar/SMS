@@ -55,7 +55,7 @@
 				<div class="card">
 					<h3>Grades</h3>
 					<p>Track academic progress by subject.</p>
-					<a href="grades.jsp">View Grades</a>
+					<a href="Student/ViewGrades">View Grades</a>
 				</div>
 
 				<div class="card">

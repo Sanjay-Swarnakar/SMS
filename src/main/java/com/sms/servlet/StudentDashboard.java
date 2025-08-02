@@ -45,33 +45,11 @@ public class StudentDashboard extends HttpServlet {
 				studentInfo.put("phone", rsStudent.getString("phone"));
 			}
 
-			// --- Load Courses and Grades ---
-			PreparedStatement psCourses = conn.prepareStatement(
-				"SELECT c.course_name, c.credits, g.grade " +
-				"FROM Enrollments e " +
-				"JOIN Courses c ON e.course_id = c.course_id " +
-				"LEFT JOIN Grades g ON e.enrollment_id = g.enrollment_id " +
-				"WHERE e.student_id = ?"
-			);
-			psCourses.setString(1, id);
-			ResultSet rsCourses = psCourses.executeQuery();
-
-			List<Map<String, String>> courseList = new ArrayList<>();
-			while (rsCourses.next()) {
-				Map<String, String> course = new HashMap<>();
-				course.put("courseName", rsCourses.getString("course_name"));
-				course.put("credits", String.valueOf(rsCourses.getInt("credits")));
-				String grade = rsCourses.getString("grade");
-				course.put("grade", (grade != null) ? grade : "Pending");
-				courseList.add(course);
-			}
-			
 			// --- Send Data to JSP ---
 			LOGGER.info(() -> "Student Dashboard - Session attributes: username=" + 
 					session.getAttribute("username") + ", student_id=" + session.getAttribute(id));
 
 			request.setAttribute("studentInfo", studentInfo);
-			request.setAttribute("courses", courseList);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("student.jsp");
 			dispatcher.forward(request, response);
 

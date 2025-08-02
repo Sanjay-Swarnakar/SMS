@@ -1,0 +1,43 @@
+/* Style for grades table */
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+	background-color: var(--card);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.table th,
+.table td {
+	padding: 12px 16px;
+	border-bottom: 1px solid #ddd;
+	text-align: left;
+}
+
+.table th {
+	background-color: var(--primary);
+	color: white;
+}
+
+.table tr:hover {
+	background-color: rgba(0, 0, 0, 0.03);
+}
+
+.container {
+	padding: 20px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+	.table th,
+	.table td {
+		padding: 10px;
+		font-size: 14px;
+	}
+
+	.container {
+		padding: 10px;
+	}
+}

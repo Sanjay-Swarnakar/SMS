@@ -31,9 +31,9 @@ public class ViewCourses extends HttpServlet {
 
         try (Connection con = DBConnection.getConnection()) {
             String sql = """
-                    SELECT c.course_id, c.course_name, c.description, c.credits
+                    SELECT c.id, c.name, c.description, c.credits
                     FROM courses c
-                    JOIN enrollments e ON c.course_id = e.course_id
+                    JOIN enrollments e ON c.id = e.course_id
                     WHERE e.student_id = ?
                 """;
 
@@ -43,8 +43,8 @@ public class ViewCourses extends HttpServlet {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                int id = rs.getInt("course_id");
-                String name = rs.getString("course_name");
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
                 String desc = rs.getString("description");
                 int credits = rs.getInt("credits");
 

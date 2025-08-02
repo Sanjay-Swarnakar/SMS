@@ -12,10 +12,12 @@ com\sms\servlet\DownloadReport.class
 com\sms\servlet\Login.class
 com\sms\servlet\ManageSettings.class
 model\User.class
+sms\student\servlet\ViewGrades.class
 com\sms\servlet\AdminDashboard.class
 com\sms\servlet\ManageUsers.class
 com\sms\servlet\EditCourse.class
 com\sms\servlet\ManageCourses.class
+model\Grade.class
 sms\student\servlet\ViewCourses.class
 com\sms\servlet\Login1.class
 com\sms\servlet\SystemLogs.class
