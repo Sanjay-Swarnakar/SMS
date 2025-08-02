@@ -67,7 +67,7 @@
 				<div class="card">
 					<h3>Assignments</h3>
 					<p>Download pending assignments and track submissions.</p>
-					<a href="assignments.jsp">View Assignments</a>
+					<a href="Student/Assignments">View Assignments</a>
 				</div>
 
 				<div class="card">

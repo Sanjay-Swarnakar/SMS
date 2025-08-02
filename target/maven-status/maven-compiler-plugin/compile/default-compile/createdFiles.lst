@@ -3,6 +3,7 @@ com\mycompany\sms\resources\JakartaEE11Resource.class
 model\SystemLog.class
 sms\student\servlet\UpdateProfile.class
 com\sms\servlet\DeleteUser.class
+sms\student\servlet\ViewAssignments.class
 model\Course.class
 model\Student.class
 com\sms\servlet\GetUsers.class
@@ -27,6 +28,7 @@ com\sms\servlet\UpdateSettings.class
 com\sms\servlet\Register.class
 sms\student\servlet\Profile.class
 com\mycompany\sms\JakartaRestConfiguration.class
+model\Assignment.class
 com\sms\servlet\GetUserDetails.class
 com\sms\servlet\OldRegister.class
 model\Settings.class
