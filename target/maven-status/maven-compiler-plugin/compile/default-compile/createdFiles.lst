@@ -16,6 +16,7 @@ com\sms\servlet\AdminDashboard.class
 com\sms\servlet\ManageUsers.class
 com\sms\servlet\EditCourse.class
 com\sms\servlet\ManageCourses.class
+sms\student\servlet\ViewCourses.class
 com\sms\servlet\Login1.class
 com\sms\servlet\SystemLogs.class
 com\sms\servlet\UpdateUser.class

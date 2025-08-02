@@ -43,13 +43,13 @@
 				<div class="card">
 					<h3>Profile</h3>
 					<p>Update your personal information and password.</p>
-					<a href="Profile">Go to Profile</a>
+					<a href="Student/Profile">Go to Profile</a>
 				</div>
 
 				<div class="card">
 					<h3>Courses</h3>
 					<p>View your enrolled courses and credits.</p>
-					<a href="courses.jsp">View Courses</a>
+					<a href="Student/ViewCourses">View Courses</a>
 				</div>
 
 				<div class="card">

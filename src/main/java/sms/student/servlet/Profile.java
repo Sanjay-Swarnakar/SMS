@@ -7,42 +7,56 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Logger;
 import model.Student;
 
 /**
  *
  * @author Sanjay Swarnakar
  */
-@WebServlet(name = "Profile", urlPatterns = {"/Student/Profile"})
+@WebServlet("/Student/Profile")
 public class Profile extends HttpServlet {
+
+	private static final Logger LOGGER = Logger.getLogger(Profile.class.getName());
+
 	@Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int studentId = (int) request.getSession().getAttribute("userId");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        try (Connection con = DBConnection.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM students WHERE id = ?");
-            ps.setInt(1, studentId);
+		HttpSession session = request.getSession(false);
 
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                Student student = new Student();
-                student.setId(rs.getInt("id"));
-                student.setName(rs.getString("name"));
-                student.setEmail(rs.getString("email"));
-                student.setPassword(rs.getString("password"));
-                student.setProfilePicture(rs.getString("profile_picture"));
+		if (session == null || session.getAttribute("id") == null) {
+			// Redirect to login or show error
+			response.sendRedirect("login.jsp");
+			return;
+		}
+		int id = Integer.parseInt((String) session.getAttribute("id"));
+		LOGGER.info(() -> "Session studentId: " + id);
 
-                request.setAttribute("student", student);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		try (Connection con = DBConnection.getConnection()) {
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM students s join users u on s.id=u.id WHERE s.id = ?");
+			ps.setString(1, (String) session.getAttribute("id"));
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/SMS/student/profile.jsp");
-        dispatcher.forward(request, response);
-    }
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Student student = new Student();
+				student.setId(rs.getInt("id"));
+				student.setName(rs.getString("fname") + " " + rs.getString("mname") + " " + rs.getString("lname"));
+				student.setEmail(rs.getString("email"));
+				student.setPassword(rs.getString("password"));
+				student.setProfilePicture(rs.getString("profile_picture"));
+
+				request.setAttribute("student", student);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/student/profile.jsp");
+		dispatcher.forward(request, response);
+	}
 }

@@ -19,7 +19,7 @@ import java.sql.SQLException;
  *
  * @author Sanjay Swarnakar
  */
-@WebServlet(name = "UpdateProfile", urlPatterns = {"/UpdateProfile"})
+@WebServlet(name = "UpdateProfile", urlPatterns = {"/Student/UpdateProfile"})
 @MultipartConfig
 public class UpdateProfile extends HttpServlet {
 
