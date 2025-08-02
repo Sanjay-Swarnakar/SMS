@@ -61,7 +61,7 @@
 				<div class="card">
 					<h3>Attendance</h3>
 					<p>Check your attendance percentage and trends.</p>
-					<a href="attendance.jsp">View Attendance</a>
+					<a href="Student/Attendance">View Attendance</a>
 				</div>
 
 				<div class="card">

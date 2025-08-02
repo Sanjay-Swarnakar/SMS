@@ -7,6 +7,7 @@ model\Course.class
 model\Student.class
 com\sms\servlet\GetUsers.class
 com\sms\servlet\EditUser.class
+model\AttendanceRecord.class
 com\sms\servlet\EditUserPageServlet.class
 com\sms\servlet\DownloadReport.class
 com\sms\servlet\Login.class
@@ -29,6 +30,7 @@ com\mycompany\sms\JakartaRestConfiguration.class
 com\sms\servlet\GetUserDetails.class
 com\sms\servlet\OldRegister.class
 model\Settings.class
+sms\student\servlet\ViewAttendance.class
 com\sms\servlet\AddCourse.class
 com\sms\servlet\StudentDashboard.class
 com\sms\servlet\DeleteCourse.class

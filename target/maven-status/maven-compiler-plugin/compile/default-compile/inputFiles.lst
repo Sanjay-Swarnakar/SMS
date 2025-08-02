@@ -24,6 +24,7 @@ C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\SystemLogs.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\UpdateSettings.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\servlet\UpdateUser.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\com\sms\util\DBConnection.java
+C:\Users\Sanjay Swarnakar\SMS\src\main\java\model\AttendanceRecord.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\model\Course.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\model\Grade.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\model\Settings.java
@@ -32,5 +33,6 @@ C:\Users\Sanjay Swarnakar\SMS\src\main\java\model\SystemLog.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\model\User.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\sms\student\servlet\Profile.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\sms\student\servlet\UpdateProfile.java
+C:\Users\Sanjay Swarnakar\SMS\src\main\java\sms\student\servlet\ViewAttendance.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\sms\student\servlet\ViewCourses.java
 C:\Users\Sanjay Swarnakar\SMS\src\main\java\sms\student\servlet\ViewGrades.java

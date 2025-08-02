@@ -16,7 +16,7 @@
 <!-- Main Content -->
 <div class="main">
 	<header>
-		<span class="title">Welcome, <%= session.getAttribute("username") %></span>
+		<span class="title">Welcome, <%= session.getAttribute("username")%></span>
 		<div>
 			<button class="dark-mode-toggle" onclick="toggleDarkMode()">🌓 Dark Mode</button>
 			<span class="toggle-btn" onclick="toggleSidebar()">☰</span>
