@@ -3,6 +3,8 @@
 	--text: #333;
 	--card: #fff;
 	--primary: #c0392b;
+	--header-bg: #c0392b;
+	--header-text: white;
 	--accent: #e74c3c;
 }
 body.dark-mode {
@@ -10,6 +12,7 @@ body.dark-mode {
 	--text: #ddd;
 	--card: #2c2c2c;
 	--primary: #e74c3c;
+	--header-bg: #e74c36;
 }
 body {
 	margin: 0;

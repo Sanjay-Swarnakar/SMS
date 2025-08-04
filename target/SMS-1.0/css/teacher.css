@@ -1,0 +1,23 @@
+/* Reuse same CSS from student.jsp here for consistency */
+/* You can externalize it into a .css file later */
+:root {
+	--bg: #f4f6f8;
+	--text: #333;
+	--card: #fff;
+	--primary: #27ae60;
+	--header-bg: #27ae60;
+	--header-text: white;
+}
+body.dark-mode {
+	--bg: #1e1e1e;
+	--text: #ddd;
+	--card: #2c2c2c;
+	--primary: #58d68d;
+	--header-bg: #121212;
+	--header-text: #ddd;
+}
+/* ...Same styles as student.jsp: body, .sidebar, .main, .card, etc... */
+html {
+	transition: background 0.4s, color 0.4s;
+}
+/* Copy full CSS from student page here */

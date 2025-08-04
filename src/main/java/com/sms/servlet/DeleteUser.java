@@ -16,32 +16,33 @@ import java.sql.PreparedStatement;
  */
 @WebServlet("/DeleteUser")
 public class DeleteUser extends HttpServlet {
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    String idParam = request.getParameter("id");
 
-    if (idParam == null || idParam.trim().isEmpty()) {
-      response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing user ID");
-      return;
-    }
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String idParam = request.getParameter("id");
+		String username = request.getParameter("username");
 
-    int id = Integer.parseInt(idParam);
+		if (idParam == null || idParam.trim().isEmpty()) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing user ID");
+			return;
+		}
 
-    try (Connection con = DBConnection.getConnection();
-         PreparedStatement ps = con.prepareStatement("DELETE FROM users_detail WHERE id=?")) {
+		int id = Integer.parseInt(idParam);
 
-      ps.setInt(1, id);
-      int affected = ps.executeUpdate();
+		try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement("DELETE FROM users WHERE id=?")) {
 
-      if (affected > 0) {
-        response.sendRedirect("ManageUsers");
-      } else {
-        response.getWriter().write("User not found or could not delete.");
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-      response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to delete user");
-    }
-  }
+			ps.setString(1, username);
+			int affected = ps.executeUpdate();
+
+			if (affected > 0) {
+				response.sendRedirect("ManageUsers");
+			} else {
+				response.getWriter().write("User not found or could not delete.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to delete user");
+		}
+	}
 }

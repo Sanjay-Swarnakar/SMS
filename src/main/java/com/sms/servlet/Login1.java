@@ -51,7 +51,8 @@ public class Login1 extends HttpServlet {
 							case "admin" ->
 								response.sendRedirect("admin_new.jsp");
 							case "teacher" ->
-								response.sendRedirect("teacher_new.jsp");
+								//response.sendRedirect("teacher_new.jsp");
+								request.getRequestDispatcher("teacher_new.jsp").forward(request, response);
 							case "student" -> {
 								request.getRequestDispatcher("StudentDashboard").forward(request, response);
 							}

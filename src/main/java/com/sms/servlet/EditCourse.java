@@ -45,7 +45,7 @@ public class EditCourse extends HttpServlet {
 		String desc = request.getParameter("description");
 		int credits = Integer.parseInt(request.getParameter("credits"));
 
-		try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement("UPDATE courses SET course_name=?, description=?, credits=? WHERE course_id=?")) {
+		try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement("UPDATE courses SET name=?, description=?, credits=? WHERE id=?")) {
 			ps.setString(1, name);
 			ps.setString(2, desc);
 			ps.setInt(3, credits);

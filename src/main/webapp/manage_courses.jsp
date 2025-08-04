@@ -9,13 +9,11 @@
 		<meta charset="UTF-8">
 		<title>Manage Courses</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/global.css">
 		<link rel="stylesheet" href="css/manage_users.css">
 	</head>
 	<body>
-		<header>
-			<h2>Manage Courses</h2>
-			<button class="btn" onclick="toggleDarkMode()">🌓</button>
-		</header>
+		<%@ include file="admin_menu.jsp" %>
 
 		<div class="container">
 			<button class="btn" onclick="openCourseModal()">➕ Add Course</button>
@@ -40,10 +38,10 @@
 					<td><%= course.getCredits()%></td>
 					<td class="actions">
 						<button class="btn" onclick="openEditCourseModal(
-								'<%= course.getCourseId()%>',
-								'<%= course.getCourseName()%>',
-								'<%= course.getDescription()%>',
-								'<%= course.getCredits()%>')">✏️ Edit</button>
+										'<%= course.getCourseId()%>',
+										'<%= course.getCourseName()%>',
+										'<%= course.getDescription()%>',
+										'<%= course.getCredits()%>')">✏️ Edit</button>
 						<form action="DeleteCourse" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this course?');">
 							<input type="hidden" name="id" value="<%= course.getCourseId()%>">
 							<button type="submit" class="btn">🗑️ Delete</button>
@@ -78,6 +76,7 @@
 			</div>
 		</div>
 
+		<%@ include file="footer.jsp" %>
 		<script>
 			const modal = document.getElementById('courseModal');
 			const form = document.getElementById('courseForm');
@@ -128,23 +127,11 @@
 				modal.style.display = 'none';
 			}
 
-			function toggleDarkMode() {
-				document.body.classList.toggle('dark-mode');
-				localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-			}
-
 			window.onclick = function (e) {
 				if (e.target === modal) {
 					closeModal();
 				}
 			};
-
-			document.addEventListener('DOMContentLoaded', function () {
-				const savedTheme = localStorage.getItem('theme');
-				if (savedTheme === 'dark') {
-					document.body.classList.add('dark-mode');
-				}
-			});
 		</script>
 	</body>
 </html>

@@ -108,7 +108,7 @@
 			<!-- Add User Form -->
 			<div class="user-form">
 				<h3>Add New User</h3>
-				<form method="post" action="AddUser">
+				<form method="post" action="AddUserOld">
 					<input type="text" name="username" placeholder="Username" required>
 					<input type="text" name="role" placeholder="Role" required>
 					<input type="password" name="password" placeholder="Password" required>

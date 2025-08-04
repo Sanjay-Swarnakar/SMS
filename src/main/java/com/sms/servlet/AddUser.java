@@ -1,84 +1,81 @@
 package com.sms.servlet;
 
 import com.sms.util.DBConnection;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import org.mindrot.jbcrypt.BCrypt;
 
 @WebServlet("/AddUser")
 @MultipartConfig
 public class AddUser extends HttpServlet {
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
 
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		String username = request.getParameter("username");
+		String fullname = request.getParameter("fullname").trim();
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		String role = request.getParameter("role");
+		String hashedPassword = BCrypt.hashpw("user123", BCrypt.gensalt());
+		
+		// Parse full name into fname, mname, lname
+		String fname = null, mname = null, lname = null;
+		String[] parts = fullname.split("\\s+");
+		switch (parts.length) {
+			case 2 -> {
+				fname = parts[0];
+				lname = parts[1];
+			}
+			case 3 -> {
+				fname = parts[0];
+				mname = parts[1];
+				lname = parts[2];
+			}
+			default -> {
+				fname = fullname; // fallback if parsing fails
+			}
+		}
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String role = request.getParameter("role");
-        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+		try (
+			Connection con = DBConnection.getConnection();
+			PreparedStatement psUser = con.prepareStatement("insert into users(username, password, role) values (?,?,?);");
+			PreparedStatement psDetail = con.prepareStatement("insert into users_detail (fname, mname, lname, email, phone, address, username) values(?,?,?,?,?,?,?);");
+		) {
+			con.setAutoCommit(false); // Start transaction
 
-        // Input validation
-        if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty() || role == null || role.trim().isEmpty()) {
-            request.setAttribute("errorMessage", "All fields are required!");
-            RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-            rd.forward(request, response);
-            return;
-        }
+			// Update users table
+			psUser.setString(1, username);
+			psUser.setString(2, hashedPassword);
+			psUser.setString(3, role);
+			psUser.executeUpdate();
 
-        try (Connection con = DBConnection.getConnection()) {
-            // Check if user already exists
-            String checkUserSQL = "SELECT COUNT(*) FROM users WHERE username = ?";
-            try (PreparedStatement checkStmt = con.prepareStatement(checkUserSQL)) {
-                checkStmt.setString(1, username);
-                try (ResultSet rs = checkStmt.executeQuery()) {
-                    if (rs.next() && rs.getInt(1) > 0) {
-                        // If user exists, send an error message
-                        request.setAttribute("errorMessage", "User already exists. Please choose another username.");
-                        RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-                        rd.forward(request, response);
-                        return;
-                    }
-                }
-            }
+			// Update users_detail table
+			psDetail.setString(1, fname);
+			psDetail.setString(2, mname);
+			psDetail.setString(3, lname);
+			psDetail.setString(4, email);
+			psDetail.setString(5, phone);
+			psDetail.setString(6, address);
+			psDetail.setString(7, username);
+			psDetail.executeUpdate();
 
-            // Insert new user into the database
-            String insertSQL = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
-            try (PreparedStatement ps = con.prepareStatement(insertSQL)) {
-                ps.setString(1, username);
-                ps.setString(2, hashedPassword);  // You should hash the password before saving
-                ps.setString(3, role);
-                int rowsAffected = ps.executeUpdate();
+			con.commit(); // Commit if both succeed
+			response.getWriter().write("success");
 
-                if (rowsAffected > 0) {
-                    // User successfully registered, forward to a success page or show a message
-                    request.setAttribute("message", "User added successfully!");
-                    RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-                    rd.forward(request, response);
-                } else {
-                    // Something went wrong with the insertion
-                    request.setAttribute("errorMessage", "Error registering user. Please try again.");
-                    RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-                    rd.forward(request, response);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(AddUser.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("errorMessage", "Error occurred: " + ex.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-            rd.forward(request, response);
-        } finally {
-            out.close();
-        }
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write("error");
+		}
+	}
 }

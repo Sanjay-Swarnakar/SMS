@@ -3,6 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="auth.jsp" %>
 <%	List<User> users = (List<User>) request.getAttribute("userList");
+	String default_role = (String) request.getAttribute("default_role");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,16 +11,15 @@
 		<meta charset="UTF-8">
 		<title>Manage Users</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/global.css">
 		<link rel="stylesheet" href="css/manage_users.css">
 	</head>
 	<body>
-		<header>
-			<h2>Manage Users</h2>
-			<button class="btn" onclick="toggleDarkMode()">🌓</button>
-		</header>
+		<%@ include file="admin_menu.jsp" %>
 
 		<div class="container">
-			<a href="registration.jsp" class="btn">➕ Add User</a>
+			<button class="btn" onclick="openModal()">➕ Add User</button>
+			<button class="btn" onclick="location.href = 'NewAccountRequests'">📥 View Account Requests</button>
 
 			<h2>Manage Users</h2>
 			<table>
@@ -53,6 +53,7 @@
 						</button>
 						<form action="DeleteUser" method="post" style="display:inline;" onsubmit="return confirm('Are you sure?');">
 							<input type="hidden" name="id" value="<%= user.getId()%>">
+							<input type="hidden" name="username" value="<%= user.getUsername()%>">
 							<button type="submit" class="btn">🗑️ Delete</button>
 						</form>
 					</td>
@@ -95,10 +96,12 @@
 			</div>
 		</div>
 
+		<%@ include file="footer.jsp" %>
 		<script>
 			const modal = document.getElementById('userModal');
 			const form = document.getElementById('userForm');
 			const title = document.getElementById('modalTitle');
+			const DEFAULT_ROLE = "<%= default_role != null ? default_role.trim().toLowerCase() : ""%>";
 
 			function openModal() {
 				title.textContent = 'Add User';
@@ -106,7 +109,10 @@
 				modal.style.display = 'flex';
 				form.action = 'AddUser';
 
-				// Remove hidden ID if exists (so it doesn't confuse EditUser servlet)
+				// Set default role
+				form.role.value = DEFAULT_ROLE;
+
+				// Remove hidden ID if exists
 				const idField = document.getElementById('userIdField');
 				if (idField) {
 					idField.remove();
@@ -154,7 +160,7 @@
 			function confirmDelete() {
 				if (confirm('Are you sure you want to delete this user?')) {
 					// Trigger delete backend logic
-					alert('User deleted (not really)');
+					alert('User deleted successfully');
 				}
 			}
 
@@ -163,11 +169,6 @@
 					closeModal();
 				}
 			};
-
-			function toggleDarkMode() {
-				document.body.classList.toggle('dark-mode');
-				localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-			}
 
 			document.addEventListener('DOMContentLoaded', function () {
 				const savedTheme = localStorage.getItem('theme');

@@ -20,7 +20,7 @@ public class DeleteCourse extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         try (Connection con = DBConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement("DELETE FROM courses WHERE course_id=?")) {
+             PreparedStatement ps = con.prepareStatement("DELETE FROM courses WHERE id=?")) {
             ps.setInt(1, id);
             ps.executeUpdate();
             response.sendRedirect("ManageCourses");

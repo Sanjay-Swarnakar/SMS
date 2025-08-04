@@ -6,14 +6,13 @@
 		<meta charset="UTF-8">
 		<title>View Reports</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/global.css">
 		<link rel="stylesheet" href="css/manage_users.css">
 		<link rel="stylesheet" href="css/view_reports.css">
 	</head>
 	<body>
-		<header>
-			<h2>View Reports</h2>
-			<button class="btn" onclick="toggleDarkMode()">🌓</button>
-		</header>
+		<%@ include file="admin_menu.jsp" %>
+
 		<div class="container">
 			<h3>Download Performance and Attendance Reports</h3>
 
@@ -34,18 +33,6 @@
 			</div>
 		</div>
 
-		<script>
-			function toggleDarkMode() {
-				document.body.classList.toggle('dark-mode');
-				localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-			}
-
-			document.addEventListener('DOMContentLoaded', function () {
-				const savedTheme = localStorage.getItem('theme');
-				if (savedTheme === 'dark') {
-					document.body.classList.add('dark-mode');
-				}
-			});
-		</script>
+		<%@ include file="footer.jsp" %>
 	</body>
 </html>

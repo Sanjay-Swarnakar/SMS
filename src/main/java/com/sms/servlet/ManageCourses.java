@@ -35,8 +35,8 @@ public class ManageCourses extends HttpServlet {
 				List<Course> courseList = new ArrayList<>();
 				while (rs.next()) {
 					Course course = new Course();
-					course.setCourseId(rs.getInt("course_id"));
-					course.setCourseName(rs.getString("course_name"));
+					course.setCourseId(rs.getInt("id"));
+					course.setCourseName(rs.getString("name"));
 					course.setDescription(rs.getString("description")); // note: column is 'desciption' (typo in db?)
 					course.setCredits(rs.getInt("credits"));
 					courseList.add(course);
@@ -46,7 +46,7 @@ public class ManageCourses extends HttpServlet {
 			}
 		} catch (SQLException ex) {
 			LOGGER.log(Level.SEVERE, "Database error", ex);
-			System.getLogger(ManageUsers.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+			System.getLogger(ManageCourses.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
 		}
 	}
 }

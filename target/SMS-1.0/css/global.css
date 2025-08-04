@@ -138,14 +138,6 @@ header .title {
 	cursor: pointer;
 }
 
-.sidebar {
-	width: 220px;
-	background: var(--card);
-	padding: 20px;
-	border-right: 1px solid #ccc;
-	transition: transform 0.3s ease;
-}
-
 .sidebar.collapsed {
 	transform: translateX(-100%);
 	position: absolute;

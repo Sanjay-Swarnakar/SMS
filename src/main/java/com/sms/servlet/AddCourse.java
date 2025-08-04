@@ -24,7 +24,7 @@ public class AddCourse extends HttpServlet {
         int credits = Integer.parseInt(request.getParameter("credits"));
 
         try (Connection con = DBConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement("INSERT INTO courses(course_name, description, credits) VALUES (?, ?, ?)");) {
+             PreparedStatement ps = con.prepareStatement("INSERT INTO courses(name, description, credits) VALUES (?, ?, ?)");) {
             ps.setString(1, name);
             ps.setString(2, desc);
             ps.setInt(3, credits);
