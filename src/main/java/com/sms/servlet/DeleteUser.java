@@ -30,9 +30,10 @@ public class DeleteUser extends HttpServlet {
 
 		int id = Integer.parseInt(idParam);
 
-		try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement("DELETE FROM users WHERE id=?")) {
+		try (Connection con = DBConnection.getConnection(); 
+				PreparedStatement ps = con.prepareStatement("DELETE FROM users WHERE id=?")) {
 
-			ps.setString(1, username);
+			ps.setInt(1, id);
 			int affected = ps.executeUpdate();
 
 			if (affected > 0) {

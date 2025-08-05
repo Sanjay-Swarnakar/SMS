@@ -25,6 +25,7 @@ public class Register extends HttpServlet {
         String fname = request.getParameter("fname");
         String mname = request.getParameter("mname");
         String lname = request.getParameter("lname");
+		String fullname = fname + " " + mname + " " + lname;
         String dob = request.getParameter("dob");
         String email = request.getParameter("email");
         String addr = request.getParameter("addr");
@@ -79,19 +80,17 @@ public class Register extends HttpServlet {
             }
             
             // Insert into new_acc_req table
-            String sql2 = "INSERT INTO new_acc_req (username, fname, mname, lname, dob, email, address, phone, crn, password) " +
-                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql2 = "INSERT INTO new_acc_req (username, fullname, dob, email, address, phone, crn, password) " +
+                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement ps2 = con.prepareStatement(sql2)) {
                 ps2.setString(1, uname);
-                ps2.setString(2, fname);
-                ps2.setString(3, mname);
-                ps2.setString(4, lname);
-                ps2.setString(5, dob);
-                ps2.setString(6, email);
-                ps2.setString(7, addr);
-                ps2.setString(8, phone);
-                ps2.setString(9, crn);
-                ps2.setString(10, hashedPassword);
+                ps2.setString(2, fullname);
+                ps2.setString(3, dob);
+                ps2.setString(4, email);
+                ps2.setString(5, addr);
+                ps2.setString(6, phone);
+                ps2.setString(7, crn);
+                ps2.setString(8, hashedPassword);
                 int rowsAffected = ps2.executeUpdate();
                 
                 if (rowsAffected > 0) {

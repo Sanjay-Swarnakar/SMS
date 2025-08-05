@@ -61,7 +61,7 @@ public class EditUser extends HttpServlet {
 		try (
 			Connection con = DBConnection.getConnection();
 			PreparedStatement psUser = con.prepareStatement("UPDATE users SET username=?, role=? WHERE id=?");
-			PreparedStatement psDetail = con.prepareStatement("UPDATE users_detail SET fname=?, mname=?, lname=?, email=?, phone=?, address=?, username=? WHERE id=?")
+			PreparedStatement psDetail = con.prepareStatement("UPDATE users_detail SET fname=?, mname=?, lname=?, email=?, phone=?, address=?, username=? WHERE user_id=?")
 		) {
 			con.setAutoCommit(false); // Start transaction
 

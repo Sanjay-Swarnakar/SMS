@@ -2,6 +2,7 @@ package com.sms.servlet;
 
 import com.sms.util.DBConnection;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.User;
 
-
+@WebServlet("/ManageUsers")
 public class ManageUsers extends HttpServlet {
 
 	private static final Logger LOGGER = Logger.getLogger(ManageUsers.class.getName());
@@ -25,8 +26,8 @@ public class ManageUsers extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String userQuery = "SELECT ud.id, ud.username, role, email, phone, address, fname, mname, lname " +
-						   "FROM users_detail ud JOIN users u ON ud.username = u.username";
+		String userQuery = "SELECT u.id, u.username, role, email, phone, address, fname, mname, lname " +
+						   "FROM users u JOIN users_detail ud ON u.id = ud.user_id;";
 		String roleQuery = "SELECT setting_value FROM settings WHERE setting_key = 'default_role';";
 
 		try (Connection con = DBConnection.getConnection();
