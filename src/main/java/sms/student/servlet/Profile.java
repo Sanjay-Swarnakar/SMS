@@ -45,7 +45,7 @@ public class Profile extends HttpServlet {
 			if (rs.next()) {
 				Student student = new Student();
 				student.setId(rs.getInt("id"));
-				student.setName(rs.getString("fname") + " " + rs.getString("mname") + " " + rs.getString("lname"));
+				student.setName(rs.getString("fname"), rs.getString("mname"), rs.getString("lname"));
 				student.setEmail(rs.getString("email"));
 				student.setPassword(rs.getString("password"));
 				student.setProfilePicture(rs.getString("profile_picture"));

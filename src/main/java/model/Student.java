@@ -12,7 +12,11 @@ public class Student {
     public void setId(int id) { this.id = id; }
 
     public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setName(String fname, String mname, String lname) { 
+		if(mname==null)
+		this.name = fname + " " + lname;
+		else this.name = fname + " " + mname + " " + lname;
+	}
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }

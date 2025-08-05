@@ -31,9 +31,25 @@ public class UpdateProfile extends HttpServlet {
 		try {
 			int studentId = Integer.parseInt(session.getAttribute("id").toString());
 			String name = request.getParameter("name");
+			// Parse full name into fname, mname, lname
+			String fname = null, mname = null, lname = null;
+			String[] parts = name.split("\\s+");
+			switch (parts.length) {
+				case 2 -> {
+					fname = parts[0];
+					lname = parts[1];
+				}
+				case 3 -> {
+					fname = parts[0];
+					mname = parts[1];
+					lname = parts[2];
+				}
+				default -> {
+					fname = name; // fallback if parsing fails
+				}
+			}
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
-
 			Part filePart = request.getPart("profilePicture");
 			String fileName = null;
 
@@ -48,19 +64,21 @@ public class UpdateProfile extends HttpServlet {
 			}
 			try (Connection con = DBConnection.getConnection()) {
 				String sql = fileName == null
-						? "UPDATE students SET fname=?, email=?, password=? WHERE id=?"
-						: "UPDATE students SET fname=?, email=?, password=?, profile_picture=? WHERE id=?";
+						? "UPDATE students SET fname=?, mname=?, lname=?, email=?, password=? WHERE id=?"
+						: "UPDATE students SET fname=?, mname=?, lname=?, email=?, password=?, profile_picture=? WHERE id=?";
 
 				PreparedStatement ps = con.prepareStatement(sql);
-				ps.setString(1, name);
-				ps.setString(2, email);
-				ps.setString(3, password);
+				ps.setString(1, fname);
+				ps.setString(2, mname);
+				ps.setString(3, lname);
+				ps.setString(4, email);
+				ps.setString(5, password);
 
 				if (fileName == null) {
-					ps.setInt(4, studentId);
+					ps.setInt(6, studentId);
 				} else {
-					ps.setString(4, fileName);
-					ps.setInt(5, studentId);
+					ps.setString(6, fileName);
+					ps.setInt(7, studentId);
 				}
 
 				ps.executeUpdate();
